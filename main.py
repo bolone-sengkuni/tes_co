@@ -23,10 +23,7 @@ def banner2():
       LOGIN AKUN PAPER
 =============================
 """)
-    
-    
-def hapus_line():
-    print ("\033[A                                                                                                      \033[A")
+
 
 def cari_harga(persen: int, maxs: int) -> int:
     hasil = [i for i in range(5000, 900000, 5000) if i * persen/100 == maxs]
@@ -110,11 +107,7 @@ class LoginBlibli:
             print('[*] Otp terkirim')
             
             otp_email = input('[*] Input otp: ')
-            
-            for x in range(2):
-                hapus_line()
-            
-            
+
             headers = omit(headers, "x-requestid", "Host", "content-type", "@")
             headers.update({
                 "x-requestid": str(uuid.uuid4()),
@@ -205,17 +198,12 @@ class Tuku:
                     try:
                         pilih = input(f"Pilihamu: ")
                         if int(pilih) <= len(vochermu):
-                            hapus_line()
                             break
-                        hapus_line()
                     except:
-                        hapus_line()
                         continue
                 
                 
-                jum = len(vochermu) + 1
-                for _ in range(jum):
-                    hapus_line()
+
                 pilihan = [x[1] for x in vochermu if int(pilih) == int(x[0])][0]
                 persen = int(pilihan['rewardMessage'].split(' ')[-1].replace('%', ''))
                 maxs = int(pilihan['maximumDiscount'].split('Rp')[1].replace('.', ''))        
@@ -348,12 +336,6 @@ if __name__ == '__main__':
     data  = (LoginBlibli().getToken(
         email=email,sandi=sandi
     ))
-    # data = {
-    #     'access_token': 'AT-121D583F-650C-4A2D-9444-BAE26D19C23C', 
-    #     'user_id': '224bd82d-56f3-42ea-8207-9b90188280a4', 
-    #     'session_id': '4b5ffb9c-0daa-4c03-8c5b-c0eef9631c30', 
-    #     'user_agent': 'BlibliAndroid/9.8.0(6029) 224bd82d-56f3-42ea-8207-9b90188280a4 Dalvik/2.1.0 (Linux; U; Android 8.0.0; greatlte Build/R16NW)'
-    #     }
     try:
         Tuku(
             email = email,
